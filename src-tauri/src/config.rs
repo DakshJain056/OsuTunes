@@ -30,7 +30,7 @@ impl SpotifyConfig {
             File::create(token_cache_path.clone()).expect("Error creating token cache file");
         }
 
-        let id = "39df84c4c8fa46e390bbe5bbda9af166";
+        let id = "xyz";
         let uri = "osutunes://callback";
 
         let creds = Credentials::new_pkce(id);
