@@ -4,6 +4,8 @@
 
 With Spotify integration, you can also search for your favorite osu! tracks and verify if they’re available on Spotify, helping you expand your music library beyond the game.
 
+(App is still under development)
+
 ---
 
 ## ✨ Features
@@ -27,8 +29,3 @@ With Spotify integration, you can also search for your favorite osu! tracks and 
 - 🔍 **Universal Search Functionality**  
   Search across skins, maps, and packs with a unified, fast, and smart search interface.
 
----
-
-## 🖥️ Installation
-
-A `.msi` installer is provided for easy setup. Simply download the installer from the [Releases](https://github.com/DakshJain056/OsuTunes/releases/download/msi_file/OsuTunes._0.1.0_x64_en-US.msi) page and follow the on-screen instructions.
