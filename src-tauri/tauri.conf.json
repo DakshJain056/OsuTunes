@@ -1,0 +1,56 @@
+{
+  "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
+  "productName": "OsuTunes!",
+  "version": "0.1.0",
+  "identifier": "osutunes",
+  "build": {
+    "frontendDist": "../dist",
+    "beforeDevCommand": "npm run dev",
+    "devUrl": "http://localhost:5173",
+    "beforeBuildCommand": "npm run build"
+  },
+  "plugins": {
+    "deep-link": {
+      "desktop": {
+        "schemes": ["osutunes"]
+      }
+    },
+    "sql": {
+      "preload": ["sqlite:history.db"]
+    }
+  },
+  "app": {
+    "withGlobalTauri": true,
+    "windows": [
+      {
+        "title": "OsuTunes!",
+        "width": 1000,
+        "height": 800,
+        "resizable": true,
+        "visible": false,
+        "fullscreen": false,
+        "label": "main",
+        "url": "index.html"
+      },
+      {
+        "height": 600,
+        "width": 800,
+        "decorations": false,
+        "url": "splashscreen.html",
+        "label": "splashscreen"
+      }
+    ],
+    "security": {
+      "csp": "null"
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": "all",
+    "icon": [
+      "icons/logo.png",
+      "icons/icon.icns",
+      "icons/logo.ico"
+    ]
+  }
+}

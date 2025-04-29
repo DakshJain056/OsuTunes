@@ -1,0 +1,362 @@
+/* Google Font Link */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Torus", "Poppins", sans-serif;
+}
+
+@font-face {
+    font-family: 'Torus';
+    src: url(../assets/fonts/Torus-Regular.woff2) format('woff2'),
+        url(../assets/fonts/Torus-Regular.woff) format('woff');
+    font-style: normal;
+    font-display: swap;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  display: flex;
+}
+
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 78px;
+  background: #11101d;
+  padding: 6px 14px;
+  z-index: 99;
+  transition: all 0.3s ease;
+}
+
+.sidebar.open {
+  width: 250px;
+}
+
+.sidebar .logo-details {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.sidebar .logo-details .icon {
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.sidebar .logo-details .logo_name {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 600;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.sidebar.open .logo-details .icon,
+.sidebar.open .logo-details .logo_name {
+  opacity: 1;
+}
+
+.sidebar .logo-details #btn {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  font-size: 22px;
+  font-size: 23px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.sidebar.open .logo-details #btn {
+  text-align: right;
+}
+
+.sidebar .logo-details .logo-png {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.sidebar.open .logo-details .logo-png {
+  opacity: 1;
+}
+
+.sidebar .logo-details img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 15px;
+}
+
+.sidebar i {
+  color: #fff;
+  height: 60px;
+  min-width: 50px;
+  font-size: 28px;
+  text-align: center;
+  line-height: 60px;
+}
+
+.sidebar .nav-list {
+  margin-top: 20px;
+  height: 100%;
+}
+
+.sidebar li {
+  position: relative;
+  margin: 8px 0;
+  list-style: none;
+}
+
+.sidebar li .sidebar-tooltip {
+  position: absolute;
+  top: -20px;
+  left: calc(100% + 15px);
+  z-index: 3;
+  background: #fff;
+  box-shadow: 0 5px 10px #0000004d;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: 400;
+  opacity: 0;
+  white-space: nowrap;
+  pointer-events: none;
+  transition: 0s;
+}
+
+.sidebar li:hover .sidebar-tooltip {
+  opacity: 1;
+  pointer-events: auto;
+  transition: all 0.3s ease;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.sidebar.open li .sidebar-tooltip {
+  display: none;
+}
+
+.sidebar li div {
+  display: flex;
+  height: 50px;
+  width: 100%;
+  border-radius: 12px;
+  align-items: center;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  background: #11101d;
+}
+
+.nav-list-item:hover {
+  background: #2a01f5;
+}
+
+.sidebar li div .links_name {
+  color: #fff;
+  font-size: 15px;
+  font-weight: 400;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.3s;
+}
+
+.sidebar.open li div .links_name {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.nav-list-item-active {
+  border-left: 6px solid #2a01f5;
+}
+
+.nav-list-item-active:hover {
+  background-color: #11101d;
+}
+
+.sidebar li div:hover .links_name {
+  transition: all 0.3s ease;
+}
+
+.sidebar li img {
+  height: 25px;
+  width: 50px;
+  min-width: 50px;
+  object-fit: contain;
+  border-radius: 6px;
+}
+
+.home-section {
+  position: relative;
+  background: #31344f;
+  top: 0;
+  left: 78px;
+  width: calc(100% - 78px);
+  transition: all 0.3s ease;
+  z-index: 2;
+}
+
+.sidebar.open ~ .home-section {
+  left: 250px;
+  width: calc(100% - 250px);
+}
+
+.home-section .text {
+  display: inline-block;
+  color: #11101d;
+  font-size: 25px;
+  font-weight: 500;
+  margin: 18px;
+}
+
+.header-bar {
+  position: relative;
+  background-color: #11101d;
+  display: flex;
+  height: 60px;
+  flex-direction: row;
+  align-items: center;
+  padding: 0 16px;
+}
+
+.search-bar {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  width: 1300px;
+}
+
+.search-bar button {
+  background: url(../assets/icon_images/search_bar/search.png) no-repeat center;
+  background-size: contain; 
+  width: 30px;
+  height: 30px; 
+  border: none; 
+  cursor: pointer; 
+}
+
+.search-bar input {
+  width: 50%;
+  margin-right: 10px;
+  border-radius: 30px;
+  border: none;
+  overflow: hidden;
+  appearance: none;
+  outline: none;
+  padding: 5px 35px 5px 15px;
+}
+
+.search-bar input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.saved button {
+  background: url(../assets/icon_images/search_bar/bookmark.png) no-repeat center;
+  background-size: 15px;
+  background-color: white;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  border: none;
+  margin-top: 5px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.downloads button {
+  background: url(../assets/icon_images/search_bar/down-arrow.png) no-repeat center;
+  background-size: contain;
+  background-color: #fff;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px; 
+  border: none; 
+  margin-top: 5px;
+  cursor: pointer; 
+}
+
+.download-icon {
+  position: absolute;
+  top: 50px; /* Adjust this to position below the download button */
+  right: 50px; /* Aligns with the download button */
+  opacity: 0;
+  visibility: hidden;
+  transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+  transform: translateY(100px); /* Start below the button */
+}
+
+.download-icon img {
+  width: 40px;
+  height: 40px;
+  z-index: 1000;
+  border-radius: 50%;
+  background-color: white;
+}
+
+.saved-icon {
+  position: absolute;
+  display: flex;
+  top: 50px;
+  justify-content: center;
+  background-color: white;
+  right: 50px;
+  align-items: center;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  opacity: 0;
+  visibility: hidden;
+  transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+  transform: translateY(100px);
+}
+
+.saved-icon img {
+  width: 20px;
+  height: 20px;
+  z-index: 1000;
+  background-color: white;
+}
+
+.download-icon.animate {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0); /* Moves up to the button */
+}
+
+.saved-icon.animate {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0); /* Moves up to the button */
+}
+
+.content-container {
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+#data-container {
+  overflow: auto;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  position: relative;
+  padding: 5px 0 70px 0;
+  gap: 20px;
+  flex: 3;
+  min-width: 500px;
+}

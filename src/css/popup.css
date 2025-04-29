@@ -1,0 +1,31 @@
+.popup-dialog {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.popup {
+    font-family: Arial, sans-serif;
+    background: #11101d;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.popup-content {
+    text-align: center;
+    color: white;
+}
+
+.popup button {
+    margin-top: 20px;
+    background-color: #2a01f5;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 16px;
+}

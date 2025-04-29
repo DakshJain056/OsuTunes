@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>OsuTunes!</title>
+    <link rel="stylesheet" href="src/styles.css" />
+    <!-- Boxicons CDN Link -->
+    <link
+      href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css"
+      rel="stylesheet"/>
+  </head>
+  <body oncontextmenu="return false;">
+    <div class="sidebar">
+      <div class="logo-details">
+        <div class="logo-png"><img src="src/assets/icon_images/logo.png"/></div>
+        <div class="logo_name">OsuTunes</div>
+        <i class="bx bx-menu" id="btn"></i>
+      </div>
+      <ul class="nav-list">
+        <li class="nav-list-item nav-list-item-active">
+          <div id="beatmap">
+            <img src="src/assets/icon_images/navbar/beatmapsets.png" />
+            <span class="links_name">Beatmaps</span>
+          </div>
+          <span class="sidebar-tooltip">Beatmaps</span>
+        </li>
+        <li class="nav-list-item">
+          <div id="beatpack">
+            <img src="src/assets/icon_images/navbar/beatmappacks.png" />
+            <span class="links_name">Beatpacks</span>
+          </div>
+          <span class="sidebar-tooltip">Beatpacks</span>
+        </li>
+        <li class="nav-list-item">
+          <div id="skin">
+            <img src="src/assets/icon_images/navbar/skins.png" />
+            <span class="links_name">Skins</span>
+          </div>
+          <span class="sidebar-tooltip">Skins</span>
+        </li>
+<!--        <li class="nav-list-item">-->
+<!--          <div id="music_player">-->
+<!--            <img src="./src/assets/icon_images/navbar/music.png" />-->
+<!--            <span class="links_name">Music Player</span>-->
+<!--          </div>-->
+<!--          <span class="sidebar-tooltip">Music Player</span>-->
+<!--        </li>-->
+        <li class="nav-list-item">
+          <div id="settings">
+            <img src="src/assets/icon_images/navbar/settings.png" />
+            <span class="links_name">Settings</span>
+          </div>
+          <span class="sidebar-tooltip">Settings</span>
+        </li>
+      </ul>
+    </div>
+    <div class="loading-overlay">
+      <div class="loading-spinner"></div>
+    </div>
+    <div class="home-section">
+      <div class="header-bar">
+<!--        <div class="search-bar">-->
+<!--          <input type="search" name="search" id="search-bar-input" placeholder="Search...">-->
+<!--          <button id="search-button"> </button>-->
+<!--        </div>-->
+        <div class="downloads">
+          <button id="download-queue-button"></button>
+        </div>
+        <div class="saved">
+          <button id="saved-queue-button"></button>
+        </div>
+      </div>
+      <div class="content-container"></div>
+      <div class="download-icon">
+        <img src="src/assets/icon_images/search_bar/down-arrow.png">
+      </div>
+      <div class="saved-icon">
+        <img src="src/assets/icon_images/search_bar/bookmark.png">
+      </div>
+      <div class="popup-dialog">
+        <div class="popup">
+          <div class="popup-content">
+              <p></p>
+              <button id="popup-button"></button>
+          </div>
+      </div>
+      </div>
+    </div>
+    <script src="src/modules/main/mainPage.js" type="module" async>
+    </script>
+  </body>
+</html>

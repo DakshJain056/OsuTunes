@@ -1,0 +1,247 @@
+/*.beatmap-packs {*/
+/*    background-color: rgb(34, 40, 45);*/
+/*    color: white;*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    width: 80%;*/
+/*    max-width: 800px;*/
+/*}*/
+
+/*.beatmap-pack {*/
+/*    box-shadow: 0 10px 20px rgba(0, 0, 0, .25);*/
+/*    width: 75%; */
+/*    color: #fff;*/
+/*}*/
+
+/*.beatmap-pack-header {*/
+/*    background-color: hsl(200, 10%, 30%);*/
+/*    display: flex;*/
+/*    padding: 15px 20px;*/
+/*    font-weight: 600;*/
+/*    align-items: center;*/
+/*    justify-content: space-between;*/
+/*}*/
+
+/*.beatmap-pack-name {*/
+/*    flex-grow: 1;*/
+/*}*/
+
+/*.beatmap-pack-details {*/
+/*    margin-right: 20px;*/
+/*}*/
+
+/*.beatpack-dropdown-btn, .beatpack-add-to-save, .download-beatpack {*/
+/*    background-color: hsl(200, 15%, 40%);*/
+/*    border: none;*/
+/*    color: white;*/
+/*    height: 30px;*/
+/*    font-size: 14px;*/
+/*    cursor: pointer;*/
+/*    margin-left: 10px;*/
+/*    border-radius: 4px;*/
+/*    transition: background-color 0.3s;*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    justify-content: center;*/
+/*}*/
+
+/*.beatpack-dropdown-btn:hover, .download-beatpack:hover, .beatpack-add-to-save:hover {*/
+/*    background-color: hsl(200, 20%, 50%);*/
+/*}*/
+
+/*.beatpack-dropdown-btn {*/
+/*    width: 30px;*/
+/*    padding: 0;*/
+/*}*/
+
+/*.beatpack-add-to-save img {*/
+/*    height: 30px;*/
+/*}*/
+
+/*.download-beatpack {*/
+/*    padding: 0 12px;*/
+/*}*/
+
+/*.beatpack-dropdown-btn .arrow {*/
+/*    width: 0;*/
+/*    height: 0;*/
+/*    border-left: 5px solid transparent;*/
+/*    border-right: 5px solid transparent;*/
+/*    border-bottom: 5px solid #fff;*/
+/*    transition: transform 0.3s;*/
+/*}*/
+
+/*.beatpack-dropdown-btn.active .arrow {*/
+/*    transform: rotate(180deg);*/
+/*}*/
+
+/*.beatmap-pack-content {*/
+/*    background-color: hsl(200, 10%, 25%);*/
+/*    padding: 15px 20px;*/
+/*    display: none;*/
+/*}*/
+
+/*.type-bar {*/
+/*    display: flex;*/
+/*    color: #fff;*/
+/*    background-color: #11101d;*/
+/*    font-size: 14px;*/
+/*    flex-direction: row;*/
+/*    padding: 10px 20px;*/
+/*    align-items: center;*/
+/*}*/
+/*  */
+/*.type-label {*/
+/*    margin-right: 20px;*/
+/*    font-weight: bold;*/
+/*}*/
+/*  */
+/*.type-option {*/
+/*    padding: 5px 15px;*/
+/*    cursor: pointer;*/
+/*    border-radius: 5px;*/
+/*    margin-right: 10px;*/
+/*}*/
+/*  */
+/*.type-option:hover {*/
+/*    background-color: #2a01f5;*/
+/*}*/
+/*  */
+/*.type-option.active {*/
+/*    background-color: #2a01f5;*/
+/*}*/
+
+.beatmap-packs {
+    background-color: rgb(34, 40, 45);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.beatmap-pack {
+    width: 95%;
+    color: #fff;
+    overflow: hidden; /* Ensures the delete button doesn't overflow */
+    transition: transform 0.1s ease-in-out;
+}
+
+.beatmap-pack:hover {
+    transform: scale(1.02);
+}
+
+.beatmap-pack-header {
+    background-color: hsl(200, 10%, 30%);
+    display: flex;
+    padding: 15px 40px;
+    font-weight: 600;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.beatmap-pack-name {
+    flex-grow: 1;
+    font-size: 16px;
+}
+
+.beatmap-pack-details {
+    font-size: 14px;
+    margin-right: 20px;
+}
+
+.beatpack-dropdown-btn,
+.beatpack-add-to-save,
+.download-beatpack {
+    background-color: hsl(200, 15%, 40%);
+    border: none;
+    color: white;
+    height: 30px;
+    font-size: 14px;
+    cursor: pointer;
+    margin-left: 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.beatpack-dropdown-btn:hover,
+.download-beatpack:hover,
+.beatpack-add-to-save:hover {
+    background-color: hsl(200, 20%, 50%);
+}
+
+.beatpack-dropdown-btn {
+    width: 30px;
+    padding: 0;
+}
+
+.beatpack-add-to-save img {
+    height: 30px;
+}
+
+.download-beatpack {
+    padding: 0 12px;
+}
+
+.beatpack-dropdown-btn .arrow {
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid #fff;
+    transition: transform 0.3s;
+}
+
+.beatpack-dropdown-btn.active .arrow {
+    transform: rotate(180deg);
+}
+
+.beatmap-pack-content {
+    background-color: hsl(200, 10%, 25%);
+    padding: 10px 50px;
+    display: none;
+}
+
+.type-bar {
+    display: flex;
+    color: #fff;
+    background-color: #11101d;
+    font-size: 14px;
+    flex-direction: row;
+    padding: 10px 20px;
+    align-items: center;
+}
+
+.type-label {
+    margin-right: 20px;
+    font-weight: bold;
+}
+
+.type-option {
+    padding: 5px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.type-option:hover {
+    background-color: #2a01f5;
+}
+
+.type-option.active {
+    background-color: #2a01f5;
+}
+
+.beatmap-list {
+    padding: 0;
+    margin: 0;
+}
+
+.beatmap-list li {
+    padding: 5px 0;
+}

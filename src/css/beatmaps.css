@@ -1,0 +1,739 @@
+/*.beatmap-item {*/
+/*    background-color: #22282a;*/
+/*    border-radius: 10px;*/
+/*    overflow: hidden;*/
+/*    color: #fff;*/
+/*    width: 375px;*/
+/*    height: 275px;*/
+/*    font-family: Arial, sans-serif;*/
+/*}*/
+
+/*.beatmap-panel{*/
+/*    background: center linear-gradient(to right, #000000bd, #ffe4e118), var(--cover);;*/
+/*    background-position: center;*/
+/*    background-size: cover;*/
+/*}*/
+
+/*.beatmap-panel-content {*/
+/*    display: flex;*/
+/*    height: 150px;*/
+/*    padding: 10px;*/
+/*    justify-content: space-between;*/
+/*    flex-direction: column;*/
+/*}*/
+
+/*.beatmap-badges {*/
+/*    font-weight: 600;*/
+/*    border-radius: 20px;*/
+/*    display: flex;*/
+/*}*/
+
+/*.beatmap-badges div {*/
+/*    margin: 2.5px;*/
+/*    padding: 4px 6px;*/
+/*    align-content: center;*/
+/*    font-size: small;*/
+/*    border-radius: 10px;*/
+/*}*/
+
+/*#ranked-badge, #approved-badge {*/
+/*    background-color: hsl( 90 , 100% , 70% );*/
+/*    color: hsl(0, 3%, 19%);*/
+/*}*/
+/*#graveyard-badge {*/
+/*    background-color: #000;*/
+/*    color: hsl( 200 ,10%,40% );*/
+/*}*/
+/*#storyboard-badge {*/
+/*    background-color: #ff66ab;*/
+/*    img {*/
+/*        transform: translateY(17.5%);*/
+/*        height: 15px;*/
+/*    }*/
+/*}*/
+
+/*#video-badge {*/
+/*    background-color: #e066ff;*/
+/*    img {*/
+/*        transform: translateY(17.5%);*/
+/*        height: 15px;*/
+/*    }*/
+/*}*/
+
+/*#loved-badge {*/
+/*    background-color: hsl(0, 100%, 62%);*/
+/*    color: hsl(0, 3%, 19%);*/
+/*}*/
+
+/*#WIP-badge {*/
+/*    background-color: #ff9966;*/
+/*    color: hsl(0, 3%, 19%);*/
+/*}*/
+
+/*#pending-badge {*/
+/*    background-color: hsl(45 , 100% , 70%);*/
+/*    color: hsl(0, 3%, 19%);*/
+/*}*/
+
+/*#qualified-badge {*/
+/*    background-color: #66ccff;*/
+/*    color: hsl(0, 3%, 19%);*/
+/*}*/
+
+/*.beatmap-info {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    margin: 5px;*/
+/*    text-shadow: 0 0 12px #000;*/
+/*    overflow: hidden;*/
+/*    font-weight: 400;*/
+/*    max-width: 300px;*/
+/*}*/
+
+/*.beatmap-info > * {  !* This targets all direct children of .beatmap-info *!*/
+/*    white-space: nowrap;*/
+/*    overflow: hidden;*/
+/*    text-overflow: ellipsis;*/
+/*}*/
+
+/*#beatmap-title {*/
+/*    font-size: large;*/
+/*    font-weight: 700;*/
+/*    overflow-x: clip;*/
+/*    color: #fffb00;*/
+/*}*/
+
+/*#beatmap-artist span{*/
+/*    color: #15ffd8;*/
+/*    font-weight: 600;*/
+/*}*/
+
+/*#beatmap-mapper span{*/
+/*    color: #ff66ab;*/
+/*    font-weight: 600;*/
+/*}*/
+
+/*.beatmap-main {*/
+/*    border-top: 2px solid #EEEEEE;*/
+/*}*/
+
+/*.beatmap-stats {*/
+/*    align-items: center;*/
+/*    background-color: #22282a;*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    justify-content: space-between;*/
+/*    padding: 5px 7.5px;*/
+/*}*/
+
+/*.stats-container {*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    background-color: #11101d;*/
+/*    padding: 2.5px 5px;*/
+/*    border-radius: 20px;*/
+/*}*/
+
+/*#favourite, #play-count{*/
+/*    margin-right: 10px;*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    img {*/
+/*        height: 20px;*/
+/*        padding: 2px;*/
+/*    }*/
+/*}*/
+
+/*#bpm {*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    img {*/
+/*        height: 17.5px;*/
+/*        padding: 2px;*/
+/*    }*/
+/*}*/
+
+/*.rating-container {*/
+/*    background: rgb(46, 53, 56);*/
+/*    border-top: 2px solid #EEEEEE;*/
+/*    padding: 1px 10px;*/
+/*    border-bottom: 2px solid #EEEEEE;*/
+/*}*/
+
+/*.mode-container {*/
+/*    align-items: center;*/
+/*    display: flex;*/
+/*    flex-direction: row;*/
+/*    height: 30px;*/
+/*}*/
+
+/*.mode-container div {*/
+/*    align-items: center;*/
+/*    display: flex;*/
+/*    flex-direction: row;*/
+/*}*/
+
+
+/*.mode-container {*/
+/*    align-items: center;*/
+/*    display: flex;*/
+/*    flex-direction: row;*/
+/*    padding: 5px;*/
+/*}*/
+
+/*.rating-container img {*/
+/*    padding: 1px 3.5px;*/
+/*    height: 15px;*/
+/*}*/
+
+/*.rating-color-dot {*/
+/*    background: var(--bg-color);*/
+/*    border-radius: 10px;*/
+/*    padding: 8px 0px;*/
+/*    width: 7.5px;*/
+/*    margin-right: 1px;*/
+/*}*/
+
+/*.action-buttons {*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    padding: 7.5px 2.5px;*/
+/*}*/
+
+/*.buttons-container button {*/
+/*    border: 2px solid white;*/
+/*    background-color: hsl(200 ,10%,15%);*/
+/*    border-radius: 20px;*/
+/*    cursor: pointer;*/
+/*    width: 35px;*/
+/*}*/
+
+/*.buttons-container {*/
+/*    gap: 5px;*/
+/*}*/
+/*.buttons-container img {*/
+/*    height: 17.5px;*/
+/*    margin-top: 5px;*/
+/*}*/
+
+/*.buttons-container button:hover {*/
+/*    border-color: #2a01f5;*/
+/*}*/
+
+/*#favourite, #play-count, #bpm, .rating-color-dot, .buttons-container button {*/
+/*    position: relative;*/
+/*  }*/
+
+/*  .tooltip {*/
+/*    visibility: hidden;*/
+/*    position: absolute;*/
+/*    background-color: #fff;*/
+/*    color: #000;*/
+/*    text-align: center;*/
+/*    font-weight: 400;*/
+/*    border-radius: 4px;*/
+/*    padding: 5px 10px;*/
+/*    z-index: 1;*/
+/*    opacity: 0;*/
+/*    transition: opacity 0.1s, visibility 0.2s;*/
+
+/*    bottom: 125%;*/
+/*    left: 50%;*/
+/*    transform: translateX(-50%);*/
+
+/*    white-space: nowrap;*/
+/*  }*/
+
+  /*#favourite:hover .tooltip,*/
+  /*#play-count:hover .tooltip,*/
+  /*#bpm:hover .tooltip,*/
+  /*.buttons-container button:hover .tooltip {*/
+  /*  visibility: visible;*/
+  /*  opacity: 1;*/
+  /*}*/
+
+
+  /*.buttons-container button .tooltip {*/
+  /*  bottom: 135%;*/
+  /*}*/
+
+/*.rating-color-dot:hover .tooltip {*/
+/*    visibility: visible;*/
+/*    opacity: 1;*/
+/*}*/
+
+/*.rating-color-dot:hover {*/
+/*    border: 2px solid yellow;*/
+/*}*/
+
+/*.beatmap-count {*/
+/*    font-size: small;*/
+/*}*/
+
+.beatmap-item {
+    background-color: #191a1d;
+    border-radius: 12px;
+    overflow: hidden;
+    color: #fff;
+    width: 325px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.beatmap-item:hover {
+    transform: scale(1.05);
+}
+
+.beatmap-panel {
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.75), rgba(255, 228, 225, 0.1)),
+    var(--cover);
+    background-position: center;
+    background-size: cover;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 15px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.beatmap-badges {
+    display: flex;
+    font-weight: 600;
+    font-size: 12px;
+}
+
+.beatmap-badges div {
+    margin-right: 8px;
+    padding: 4px 8px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+}
+
+#ranked-badge, #approved-badge {
+    background-color: #8ef542;
+    color: #191a1d;
+}
+
+#graveyard-badge {
+    background-color: #000;
+    color: #5C6970FF;
+}
+
+#loved-badge {
+    background-color: hsl(0, 100%, 62%);
+    color: #191a1d;
+}
+
+#WIP-badge {
+    background-color: #ff9966;
+    color: #191a1d;
+}
+
+#pending-badge {
+    background-color: hsl(45, 86%, 60%);
+    color: #191a1d;
+}
+
+#qualified-badge {
+    background-color: #32b9f4;
+    color: #191a1d;
+}
+
+
+#storyboard-badge,
+#video-badge {
+    background-color: #ff66ab;
+    display: flex;
+    align-items: center;
+    img {
+        height: 16px;
+        margin-right: 4px;
+    }
+}
+
+.beatmap-info {
+    display: flex;
+    flex-direction: column;
+    text-shadow: 0 0 12px rgba(0, 0, 0, 0.8);
+    overflow: hidden;
+    font-weight: 500;
+}
+
+#beatmap-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #ffff00;
+    margin-bottom: 4px;
+}
+
+#beatmap-artist span,
+#beatmap-mapper span {
+    font-weight: 600;
+}
+
+#beatmap-artist span {
+    color: #15ffd8;
+}
+
+#beatmap-mapper span {
+    color: #ff66ab;
+}
+
+.beatmap-main {
+    border-top: 2px solid #2c2f33;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.beatmap-stats {
+    display: flex;
+    flex-direction: column;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    gap: 8px;
+    background-color: #191a1d;
+}
+
+.stats-container {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    border-radius: 20px;
+}
+
+#favourite,
+#play-count,
+#bpm {
+    display: flex;
+    align-items: center;
+    img {
+        height: 18px;
+        margin-right: 4px;
+    }
+}
+
+.rating-container {
+    background-color: #191a1d;
+    border-top: 2px solid #2c2f33;
+    border-bottom: 2px solid #2c2f33;
+    padding: 5px;
+}
+
+#play-count {
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+.mode-container {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.mode-container div {
+    display: flex;
+    align-items: center;
+}
+
+.rating-container img {
+    height: 16px;
+    margin-right: 4px;
+}
+
+.rating-color-dot {
+    background: var(--bg-color);
+    border-radius: 10px;
+    width: 7.5px;
+    height: 15px;
+    margin-right: 2px;
+    position: relative;
+
+    &:hover {
+        border: 2px solid #ffff00;
+        .tooltip {
+            visibility: visible;
+            opacity: 1;
+        }
+    }
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+}
+
+.buttons-container {
+    display: flex;
+    gap: 8px;
+}
+
+.buttons-container button {
+    border: 2px solid #fff;
+    background-color: #11101d;
+    border-radius: 20px;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+        height: 18px;
+    }
+
+    &:hover {
+        border-color: #2a01f5;
+        .tooltip {
+            visibility: visible;
+            opacity: 1;
+        }
+    }
+}
+
+/* Add these styles to your existing CSS */
+#favourite,
+#play-count,
+#bpm,
+.buttons-container button {
+    position: relative;
+}
+
+#favourite .tooltip,
+#play-count .tooltip,
+#bpm .tooltip,
+.buttons-container button .tooltip {
+    position: absolute;
+    bottom: 130%;
+    left: 50%;
+    transform: translateX(-50%);
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.15s, visibility 0.2s;
+    background-color: #fff;
+    color: #000;
+    text-align: center;
+    font-weight: 400;
+    border-radius: 4px;
+    padding: 6px 10px;
+    z-index: 1000;
+    white-space: nowrap;
+    font-size: 12px;
+}
+
+#favourite:hover .tooltip,
+#play-count:hover .tooltip,
+#bpm:hover .tooltip,
+.buttons-container button:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+}
+
+.tooltip {
+    visibility: hidden;
+    position: absolute;
+    background-color: #fff;
+    color: #000;
+    text-align: center;
+    font-weight: 400;
+    border-radius: 4px;
+    padding: 6px 10px;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.15s, visibility 0.2s;
+    bottom: 130%;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    font-size: 12px;
+}
+
+.sorting-bar {
+    display: flex;
+    color: #fff;
+    background-color: #11101d;
+    font-size: 14px;
+    flex-wrap: wrap;
+    padding: 10px 20px;
+    align-items: center;
+  }
+  
+  .sort-by {
+    margin-right: 20px;
+    font-weight: bold;
+  }
+  
+  .game-mode-dropdown {
+    background-color: #2a2e32;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    margin-right: 20px;
+    border-radius: 5px;
+  }
+  
+  .sort-option {
+    padding: 5px 15px;
+    cursor: pointer;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    margin-right: 10px;
+  }
+  
+  .sort-option:hover {
+    background-color: #2a01f5;
+  }
+  
+  .sort-option.sorted-asc,
+  .sort-option.sorted-desc {
+    background-color: #2a01f5;
+  }
+  
+  .sort-option .arrow {
+    margin-left: 5px;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+  }
+  
+  .sorted-asc .arrow {
+    border-bottom: 5px solid #fff;
+  }
+  
+  .sorted-desc .arrow {
+    border-top: 5px solid #fff;
+  }
+  
+  .categories-bar {
+    display: flex;
+    color: #fff;
+    background-color: #11101d;
+    font-size: 14px;
+    flex-wrap: wrap;
+    padding: 10px 20px;
+    align-items: center;
+  }
+  
+  .categories-label {
+    margin-right: 20px;
+    font-weight: bold;
+  }
+  
+  .category-option {
+    padding: 5px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-right: 10px;
+    margin-top: 10px;
+  }
+  
+  .category-option:hover {
+    background-color: #2a01f5;
+  }
+  
+  .category-option.active {
+    background-color: #2a01f5;
+  }
+
+  .main-content {
+    display: flex;
+    height: 100%;
+    position: relative;
+  }
+  
+  .spotify-container {
+    display: none;
+    position: relative;
+    top: 0;
+    right: 0;
+    width: 50dvh;
+    height: 79dvh;
+    background-color: rgba(0, 0, 0, 0.9);
+    overflow: auto;
+    z-index: 500;
+    padding: 20px;
+}
+
+.bookmark-section {
+    height: 84.25dvh;
+}
+
+.spotify-results {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.spotify-results ul {
+    list-style-type: none;
+    padding: 7.5px;
+    width: 100%;
+}
+
+.spotify-results li {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 7.5px;
+    background: #0b452970;
+    border-radius: 10px;
+}
+
+.spotify-results strong {
+    color: #68ff94;
+}
+
+.spotify-results p {
+    color: #fdfdfd;
+    margin-top: 7.5px;
+}
+
+.spotify-results img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    border-radius: 5px;
+}
+
+.no-results {
+    text-align: center;
+    padding: 2rem;
+}
+
+.no-results-image {
+    width: 200px;
+    height: auto;
+    margin-bottom: 1rem;
+}
+
+.add-to-playlist-button {
+    margin-left: auto;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.add-to-playlist-button img {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.2s;
+}
+
+.add-to-playlist-button:hover img {
+    transform: scale(1.2);
+}
+
+.close-spotify {
+    position: fixed;
+    background: #68ff94;
+    border: none;
+    color: black;
+    cursor: pointer;
+    padding: 5px 7.5px;
+    border-radius: 25px;
+}
