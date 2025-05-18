@@ -3,17 +3,12 @@ use reqwest::header::{HeaderMap, COOKIE};
 use reqwest::Client;
 use scraper::{Html, Selector};
 use std::sync::mpsc;
-use std::thread;
-use tao::event::{Event, WindowEvent};
-use tao::event_loop::{ControlFlow, EventLoopBuilder};
-use tao::platform::run_return::EventLoopExtRunReturn;
-use tao::platform::windows::EventLoopBuilderExtWindows;
-use tao::window::WindowBuilder;
-use tauri::State;
-use wry::WebViewBuilder;
+use tauri::{AppHandle, Manager, State, WebviewUrl, WebviewWindowBuilder, WindowEvent};
+use url::Url;
 
 #[tauri::command]
-pub async fn logged_in(state: State<'_, AppConfig>) -> Result<bool, String> {
+pub async fn logged_in(app_handle: AppHandle) -> Result<bool, String> {
+    let state = app_handle.state::<AppConfig>();
     let cookie = state.osu.cookie.lock().unwrap().clone();
     let mut headers = HeaderMap::new();
     headers.insert(
@@ -45,8 +40,8 @@ pub async fn logged_in(state: State<'_, AppConfig>) -> Result<bool, String> {
 }
 
 #[tauri::command]
-pub fn login(state: State<'_, AppConfig>) -> Result<(), String> {
-    match get_cookie() {
+pub async fn login(app: AppHandle, state: State<'_, AppConfig>) -> Result<(), String> {
+    match get_cookie(app).await {
         Ok(cookie) => {
             // Use the cookie string here
             let mut cookie_guard = state.osu.cookie.lock().unwrap();
@@ -57,52 +52,42 @@ pub fn login(state: State<'_, AppConfig>) -> Result<(), String> {
     }
 }
 
-fn get_cookie() -> Result<String, String> {
+async fn get_cookie(app: AppHandle) -> Result<String, String> {
     let (tx, rx) = mpsc::channel();
+    let webview_window = WebviewWindowBuilder::new(
+            &app,
+            "login-window", // Unique identifier for the window
+            WebviewUrl::External(Url::parse("https://osu.ppy.sh").unwrap())
+        )
+        .title("Osu! Login") // Set a proper window title
+        .center() // Center the window on screen
+        .decorations(true) // Enable window decorations (close, minimize, maximize)
+        .visible(true) // Make sure the window is visible
+        .build()
+        .unwrap();
 
-    thread::spawn(move || {
-        let mut event_loop = EventLoopBuilder::new().with_any_thread(true).build();
+    webview_window.on_window_event(move |event| {
+        if let WindowEvent::CloseRequested { .. } = event {
+            println!("window close requested, getting final cookies");
 
-        let window = WindowBuilder::new()
-            .with_title("Osu! Login")
-            .build(&event_loop)
-            .unwrap();
+            // Get the window reference from the app handle
+            let window = app.get_webview_window("login-window")
+                .expect("Failed to get window");
 
-        let webview = WebViewBuilder::new()
-            .with_devtools(true)
-            .build(&window)
-            .unwrap();
+            // Get final cookies when user closes the window (presumably after logging in)
+            if let Ok(cookies) = window.cookies_for_url(Url::parse("https://osu.ppy.sh").unwrap()) {
+                let cookie_string = cookies
+                    .iter()
+                    .map(|cookie| format!("{}={}", cookie.name(), cookie.value()))
+                    .collect::<Vec<String>>()
+                    .join(";");
 
-        webview.clear_all_browsing_data().unwrap();
-        webview.load_url("https://osu.ppy.sh").unwrap();
+                println!("obtained final cookies after user interaction: {}", cookie_string);
 
-        event_loop.run_return(move |event, _, control_flow| {
-            *control_flow = ControlFlow::Wait;
-            match event {
-                Event::WindowEvent {
-                    event: WindowEvent::CloseRequested,
-                    ..
-                } => {
-                    let cookie_result = webview
-                        .cookies_for_url("https://osu.ppy.sh")
-                        .map(|cookies| {
-                            cookies
-                                .iter()
-                                .map(|cookie| format!("{}={}", cookie.name(), cookie.value()))
-                                .collect::<Vec<String>>()
-                                .join(";")
-                        })
-                        .unwrap_or_default();
-
-                    // Send the cookie string through the channel
-                    let _ = tx.send(cookie_result);
-                    *control_flow = ControlFlow::Exit;
-                }
-                _ => (),
+                let _ = tx.send(cookie_string);
             }
-        });
+        }
     });
 
-    // Wait for the cookie value from the spawned thread
     Ok(rx.recv().unwrap())
 }
