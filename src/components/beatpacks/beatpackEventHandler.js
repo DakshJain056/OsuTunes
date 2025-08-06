@@ -20,7 +20,8 @@ export function removeEventListener() {
     contentContainer.removeEventListener('click', beatpackCardEventHandler.handleActionButtonClick);
 }
 
-export async function handlePageChange() {
+export async function handlePageChange(newPage) {
+    beatpackState.currentPage = newPage;
     await loadData();
 }
 
