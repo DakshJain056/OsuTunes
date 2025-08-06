@@ -28,7 +28,20 @@ let sectionName = 'beatmap';
 async function initializeApplication() {
     mainState.store = await Store.load('settings.dat', { autoSave: false });
     mainState.db = await Database.load('sqlite:history.db');
+    await markIncompleteDownloadsFailed();
+
     await check_login();
+}
+
+async function markIncompleteDownloadsFailed() {
+    try {
+        await mainState.db.execute(
+            "UPDATE downloads SET status = 'failed' WHERE status IN ('queued', 'downloading')"
+        );
+        console.log("Marked incomplete downloads as failed.");
+    } catch (error) {
+        console.error("Failed to mark incomplete downloads as failed:", error);
+    }
 }
 
 initializeApplication();
