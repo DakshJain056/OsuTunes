@@ -19,6 +19,10 @@ With Spotify integration, you can also search for your favorite osu! tracks and 
 - 🎧 **Spotify Integration**  
   Search for osu! tracks and verify their availability on Spotify using the Spotify API.
 
+- 🔍 **Search Functionality**  
+  Search across skins and maps with a unified, fast, and smart search interface.
+
+
 ---
 
 ## 🚧 Future Goals
@@ -26,6 +30,4 @@ With Spotify integration, you can also search for your favorite osu! tracks and 
 - 🎵 **Integrated Music Player**  
   Listen to your downloaded osu! songs directly within the app.
 
-- 🔍 **Universal Search Functionality**  
-  Search across skins, maps, and packs with a unified, fast, and smart search interface.
 
