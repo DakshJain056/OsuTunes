@@ -8,6 +8,7 @@ import {
     removeEventListeners
 } from "../../components/beatmaps/beatmapEventHandlers.js";
 import SortingBar from "../../components/beatmaps/sortingBar/sortingBar.js";
+
 const { invoke } = window.__TAURI__.core;
 
 export const BeatmapPage = {
@@ -53,7 +54,7 @@ export const BeatmapPage = {
     }
 }
 
-export async function loadData() {
+export async function loadData(keyword = "") {
     if (beatmapsState.isLoading) return;
     beatmapsState.isLoading = true;
 
@@ -78,14 +79,21 @@ export async function loadData() {
             sort: sortParam,
             mode: modeParam,
             category: categoryParam,
-            cursor: beatmapsState.cursorString
+            cursor: beatmapsState.cursorString,
+            key: keyword
         });
-        beatmapsState.cursorString = result.cursor_string;
+
+        if(result.cursor_string) {
+            beatmapsState.cursorString = result.cursor_string;
+        } else {
+            beatmapsState.cursorString = '';
+        }
+
         Object.assign(beatmapsState.beatmaps, result.beatmapsets);
         renderBeatmaps(result.beatmapsets, container);
     } catch (error) {
         console.error(error);
-        popupManager.showError(loadData());
+        popupManager.showError(loadData(keyword));
     } finally {
         beatmapsState.isLoading = false;
         loadingScreen.hideLoading();
