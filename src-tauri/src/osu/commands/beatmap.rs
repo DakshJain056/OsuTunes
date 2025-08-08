@@ -14,19 +14,24 @@ pub async fn fetch_beatmaps(
     mode: Option<u8>,
     category: Option<String>,
     cursor: String,
+    key: String,
 ) -> Result<Value, String> {
     let mode_str = mode
         .map(|m| m.to_string())
         .unwrap_or_else(|| "".to_string());
     let category_str = category.unwrap_or_else(|| "Error".to_string());
+
     let url = format!(
-        "{}/search?m={}&nsfw=true&sort={}&s={}&cursor_string={}",
+        "{}/search?m={}&nsfw=true&sort={}&s={}&cursor_string={}&q={}",
         state.osu.beatmapsets_url.clone(),
         mode_str,
         sort,
         category_str,
-        cursor
+        cursor,
+        key
     );
+
+    println!("{}", url);
 
     let cookie = state.osu.cookie.lock().unwrap().clone();
     let mut headers = HeaderMap::new();

@@ -52,10 +52,11 @@ fn main() {
         )
         .plugin(tauri_plugin_deep_link::init())
         .setup(|app| {
-            let app_handle = app.handle();
-            app.manage(AppConfig::new(&app_handle));
+            let app_config = AppConfig::new(app.handle());
+            app.manage(app_config);
 
-            let handle = app_handle.clone();
+            // Now set up deep link handling
+            let handle = app.handle().clone();
             app.deep_link().on_open_url(move |event: OpenUrlEvent| {
                 let auth_code = event
                     .urls()
@@ -100,7 +101,7 @@ fn main() {
             fetch_contests,
             fetch_contest_skins,
             open_forum_post,
-            get_tracks,
+            get_tracks
         ])
         .on_window_event(|window, event| {
             if let tauri::WindowEvent::CloseRequested { .. } = event {

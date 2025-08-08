@@ -59,8 +59,8 @@ class PopupManager {
     async showLogin() {
         const loginProcess = async () => {
             try {
-                await invoke('login');
                 this.showVerify();
+                await invoke('login');
             } catch (error) {
                 this.showError(() => this.showLogin());
             }

@@ -1,6 +1,7 @@
 import {typeBarEventHandler} from "./typeBar/typeBarEventHandler.js";
 import {loadData} from "../../modules/beatpacks/beatpackPage.js";
 import {beatpackCardEventHandler} from "./beatpackCard/beatpackCardEventHandler.js";
+import {beatpackState} from "../../modules/beatpacks/state.js";
 
 export function addEventListener() {
     const contentContainer = document.getElementById('data-container');
@@ -20,7 +21,8 @@ export function removeEventListener() {
     contentContainer.removeEventListener('click', beatpackCardEventHandler.handleActionButtonClick);
 }
 
-export async function handlePageChange() {
+export async function handlePageChange(newPage) {
+    beatpackState.currentPage = newPage;
     await loadData();
 }
 

@@ -45,8 +45,8 @@ export function handleScrollHeight() {
 
 async function handleScroll() {
     const { scrollTop, scrollHeight, clientHeight} = document.getElementById('data-container');
-
-    if (scrollHeight - (scrollTop + clientHeight) < 500 && !beatmapsState.isLoading) {
-        await loadData(beatmapsState.currentSortBy, beatmapsState.currentSortOrder, beatmapsState.currentCategory, beatmapsState.currentGameMode);
+    const searchBar = document.getElementById('search-bar-input');
+    if (scrollHeight - (scrollTop + clientHeight) < 500 && !beatmapsState.isLoading && beatmapsState.cursorString !== '') {
+        await loadData(searchBar.value.replace(/ /g, "%20"));
     }
 }

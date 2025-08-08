@@ -4,7 +4,7 @@ import { loadingScreen } from '../../components/ui/loading.js';
 import { SettingsPage } from '../settings.js';
 import { downloadModule } from '../downloads.js';
 import {mainState} from "./state.js";
-import {BeatmapPage} from "../beatmaps/beatmapPage.js";
+import {BeatmapPage, loadData as beatmaploadData} from "../beatmaps/beatmapPage.js";
 import {BeatpackPage} from "../beatpacks/beatpackPage.js";
 import {SkinPage} from "../skins/skinPage.js";
 import {Store} from "@tauri-apps/plugin-store";
@@ -12,7 +12,8 @@ import {bookmarkModule} from "../bookmarks/bookmarks.js";
 import {handleScrollHeight} from "../../components/beatmaps/beatmapEventHandlers.js";
 import {handleScroll} from "../../components/beatpacks/beatpackEventHandler.js";
 import {handleSkinScroll} from "../../components/skins/skinEventHandler.js";
-import {handleMusicPlayerScrollHeight} from "../../components/music_player/musicPlayerEventHandler.js";
+import {beatmapsState} from "../beatmaps/state.js";
+import { loadData as skinLoadData } from "../skins/skinPage.js";
 
 const Database = window.__TAURI__.sql;
 const { invoke } = window.__TAURI__.core;
@@ -22,14 +23,30 @@ const closeBtn = document.getElementById("btn");
 const navListItems = document.querySelectorAll(".nav-list-item");
 const contentContainer = document.querySelector('.content-container');
 const downloadBtn = document.getElementById('download-queue-button');
+const searchBtn = document.getElementById('search-button');
+const searchBar = document.getElementById('search-bar-input');
 const bookmarkBtn = document.getElementById('saved-queue-button');
 let sectionName = 'beatmap';
 
 async function initializeApplication() {
     mainState.store = await Store.load('settings.dat', { autoSave: false });
     mainState.db = await Database.load('sqlite:history.db');
+    await markIncompleteDownloadsFailed();
+
     await check_login();
 }
+
+async function markIncompleteDownloadsFailed() {
+    try {
+        await mainState.db.execute(
+            "UPDATE downloads SET status = 'failed' WHERE status IN ('queued', 'downloading')"
+        );
+        console.log("Marked incomplete downloads as failed.");
+    } catch (error) {
+        console.error("Failed to mark incomplete downloads as failed:", error);
+    }
+}
+
 
 initializeApplication();
 
@@ -57,6 +74,9 @@ async function switchSection() {
 
     loadingScreen.showLoading();
     await mainState.selectedModule.init();
+
+    searchBar.disabled = modules === 'beatpack' || modules === 'settings';
+
     updateActiveNavItem(sectionName);
     loadingScreen.hideLoading();
 }
@@ -144,6 +164,19 @@ bookmarkBtn.addEventListener("click", async () => {
     mainState.selectedModule = bookmarkModule;
     updateActiveNavItem();
     await bookmarkModule.initSavedTab();
+});
+
+searchBtn.addEventListener("click", async () => {
+   if(sectionName === 'beatmap') {
+       document.getElementById("data-container").innerHTML = '';
+       beatmapsState.beatmaps = [];
+       beatmapsState.cursorString = '';
+       await beatmaploadData(searchBar.value.replace(/ /g, "%20"));
+       console.log("searchBar.value after search:", searchBar.value);
+   } else if(sectionName === 'skin') {
+       await skinLoadData(1, searchBar.value);
+       console.log("searchBar.value after search:", searchBar.value);
+   }
 });
 
 function menuBtnChange() {

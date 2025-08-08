@@ -173,19 +173,21 @@ export function getTotalPages() {
     return Math.ceil(filteredSkins.length / SKIN_CONSTANTS.ITEMS_PER_PAGE);
 }
 
-export async function loadData(page) {
+
+export async function loadData(page, searchQuery = "") {
     const contentContainer = getContentContainer();
     contentContainer.innerHTML = '';
 
     loadingScreen.showLoading();
 
-    const filteredSkins = filterSkins();
+    const filteredSkins = filterSkins(searchQuery);
     const start = (page - 1) * SKIN_CONSTANTS.ITEMS_PER_PAGE;
     const end = start + SKIN_CONSTANTS.ITEMS_PER_PAGE;
     const skins = filteredSkins.slice(start, end);
 
     if (skins.length === 0) {
-        this.contentContainer.innerHTML = '<img src="assets/icon_images/nothing_found.jpeg">';
+        contentContainer.innerHTML = '<img src="assets/icon_images/nothing_found.jpeg">';
+        loadingScreen.hideLoading();
         return;
     }
     await renderSkins(skins, contentContainer);
@@ -193,8 +195,13 @@ export async function loadData(page) {
     loadingScreen.hideLoading();
 }
 
-function filterSkins() {
+function filterSkins(searchQuery = "") {
+    const lowerQuery = searchQuery.trim().toLowerCase();
+
     return skinState.skins.filter(skin => {
+        const searchMatch = !lowerQuery ||
+            skin.skin_name?.toLowerCase().includes(lowerQuery) ||
+            skin.formatted_author?.toLowerCase().includes(lowerQuery);
         // Category filter (seems to be working fine, so we'll keep it as is)
         const categoryMatch =
             (skinState.currentFilter.includedCategories.length === 0 ||
@@ -213,7 +220,7 @@ function filterSkins() {
             skinState.currentFilter.aspectRatio.length === 0 ||
             skin.ratios && skin.ratios.includes("all") ? true : skinState.currentFilter.aspectRatio.every(ratio => skin.ratios && skin.ratios.includes(ratio));
 
-        return categoryMatch && resolutionMatch && aspectRatioMatch && gameModeMatch;
+        return searchMatch && categoryMatch && resolutionMatch && aspectRatioMatch && gameModeMatch;
     });
 }
 
@@ -248,12 +255,13 @@ export async function displaySkin(skin_id) {
     await SkinPage.render();
     const container = document.getElementById('skin-container');
 
+    console.log(skinData.game_modes);
     // Create meta items HTML
     const metaItems = [
         { label: 'Author:', value: skinData.formatted_author },
         { label: 'Released:', value: new Date(skinData.date_released).toLocaleDateString() },
         { label: 'Modes:', value: skinData.game_modes.map(mode => `
-            <img src="src/assets/icon_images/game_modes/${mode}.png" alt="${mode}" class="skin-info-panel-game-modes">
+            <img src="assets/icon_images/game_modes/${mode}.png" alt="${mode}" class="skin-info-panel-game-modes">
         `).join(' ') },
         { label: 'Resolution & Ratio:', value: `${skinData.resolutions.join(', ')} | ${skinData.ratios.join(', ')}` },
         { label: 'Categories:', value: skinData.categories.join(', ') }
