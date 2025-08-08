@@ -50,46 +50,15 @@ pub async fn login(app: AppHandle, state: State<'_, AppConfig>) -> Result<(), St
         }
         Err(e) => Err(e.to_string()),
     }
-    // println!("entered login");
-    // let webview_window = WebviewWindowBuilder::new(
-    //         &app,
-    //         "login-window", // Unique identifier for the window
-    //         WebviewUrl::External(Url::parse("https://osu.ppy.sh").unwrap())
-    //     )
-    //     .title("Osu! Login") // Set a proper window title
-    //     .center() // Center the window on screen
-    //     .decorations(true) // Enable window decorations (close, minimize, maximize)
-    //     .visible(true) // Make sure the window is visible
-    //     .build()
-    //     .unwrap();
-    //
-    // println!("created webview window");
-    //
-    // let cookie = webview_window
-    //     .cookies_for_url(Url::parse("https://osu.ppy.sh").unwrap()).
-    //     map(|cookies| {
-    //         cookies
-    //             .iter()
-    //             .map(|cookie| format!("{}={}", cookie.name(), cookie.value()))
-    //             .collect::<Vec<String>>()
-    //             .join(";")
-    //     })
-    //     .unwrap_or_default();
-    //
-    // println!("obtained cookies: {}", cookie);
-    // let mut cookie_guard = state.osu.cookie.lock().unwrap();
-    // *cookie_guard = cookie;
-    //
-    // Ok(())
 }
 
 async fn get_cookie(app: AppHandle) -> Result<String, String> {
     let (tx, rx) = mpsc::channel();
     let webview_window = WebviewWindowBuilder::new(
-            &app,
-            "login-window", // Unique identifier for the window
-            WebviewUrl::External(Url::parse("https://osu.ppy.sh").unwrap())
-        )
+        &app,
+        "login-window", // Unique identifier for the window
+        WebviewUrl::External(Url::parse("https://osu.ppy.sh").unwrap())
+    )
         .title("Osu! Login") // Set a proper window title
         .center() // Center the window on screen
         .decorations(true) // Enable window decorations (close, minimize, maximize)
@@ -120,50 +89,5 @@ async fn get_cookie(app: AppHandle) -> Result<String, String> {
         }
     });
 
-
-    // thread::spawn(move || {
-    //     let mut event_loop = EventLoopBuilder::new().with_any_thread(true).build();
-    //
-    //     let window = WindowBuilder::new()
-    //         .with_title("Osu! Login")
-    //         .build(&event_loop)
-    //         .unwrap();
-    //
-    //     let webview = WebViewBuilder::new()
-    //         .with_devtools(true)
-    //         .build(&window)
-    //         .unwrap();
-    //
-    //     webview.clear_all_browsing_data().unwrap();
-    //     webview.load_url("https://osu.ppy.sh").unwrap();
-    //
-    //     event_loop.run_return(move |event, _, control_flow| {
-    //         *control_flow = ControlFlow::Wait;
-    //         match event {
-    //             Event::WindowEvent {
-    //                 event: tao::event::WindowEvent::CloseRequested,
-    //                 ..
-    //             } => {
-    //                 let cookie_result = webview
-    //                     .cookies_for_url("https://osu.ppy.sh")
-    //                     .map(|cookies| {
-    //                         cookies
-    //                             .iter()
-    //                             .map(|cookie| format!("{}={}", cookie.name(), cookie.value()))
-    //                             .collect::<Vec<String>>()
-    //                             .join(";")
-    //                     })
-    //                     .unwrap_or_default();
-    //
-    //                 // Send the cookie string through the channel
-    //                 let _ = tx.send(cookie_result);
-    //                 *control_flow = ControlFlow::Exit;
-    //             }
-    //             _ => (),
-    //         }
-    //     });
-    // });
-
-    // Wait for the cookie value from the spawned thread
     Ok(rx.recv().unwrap())
 }
