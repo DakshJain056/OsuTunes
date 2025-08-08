@@ -31,8 +31,6 @@ pub async fn fetch_beatmaps(
         key
     );
 
-    println!("{}", url);
-
     let cookie = state.osu.cookie.lock().unwrap().clone();
     let mut headers = HeaderMap::new();
     headers.insert(
