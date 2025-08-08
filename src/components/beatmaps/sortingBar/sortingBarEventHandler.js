@@ -10,8 +10,40 @@ export const sortingBarEventHandler = {
         element.classList.add('active');
 
         beatmapsState.currentCategory = element.dataset.category;
+
+        // Update 'ranked' → 'updated' dynamically without re-render
+        const specialCategories = ['pending', 'wip', 'graveyard'];
+        const rankedOption = document.querySelector('.sort-option[data-sort="ranked"], .sort-option[data-sort="updated"]');
+
+        if (rankedOption) {
+            if (specialCategories.includes(beatmapsState.currentCategory)) {
+                rankedOption.dataset.sort = 'updated';
+                rankedOption.firstChild.textContent = 'Updated';
+                if (beatmapsState.currentSortBy === 'ranked') {
+                    beatmapsState.currentSortBy = 'updated';
+                }
+            } else {
+                rankedOption.dataset.sort = 'ranked';
+                rankedOption.firstChild.textContent = 'Ranked';
+                if (beatmapsState.currentSortBy === 'updated') {
+                    beatmapsState.currentSortBy = 'ranked';
+                }
+            }
+        }
+
         await sortingBarEventHandler.updateData();
     },
+
+    // async handleCategoryClick(event) {
+    //     const element = event.target.closest('.category-option');
+    //     if (!element) return;
+    //
+    //     document.querySelectorAll('.category-option').forEach(el => el.classList.remove('active'));
+    //     element.classList.add('active');
+    //
+    //     beatmapsState.currentCategory = element.dataset.category;
+    //     await sortingBarEventHandler.updateData();
+    // },
 
     async handleSortingClick(event) {
         const element = event.target.closest('.sort-option');
@@ -40,6 +72,7 @@ export const sortingBarEventHandler = {
         beatmapsState.cursorString = '';
         document.getElementById("data-container").innerHTML = '';
         beatmapsState.beatmaps = [];
-        await loadData();
+        const searchBar = document.getElementById('search-bar-input');
+        await loadData(searchBar.value.replace(/ /g, "%20"));
     }
 }
